@@ -1,0 +1,51 @@
+package ua.nure.nefedchenko.practice4;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Properties;
+
+public class Part5 {
+    public static final String propEN = "resources_en.properties";
+    public static final String propRU = "resources_ru.properties";
+
+    public static void main(String[] args) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+            String key;
+            String[] data;
+            while ((key = br.readLine()) != null) {
+                if (key.equals("stop")) {
+                    break;
+                }
+                data = key.split("\\s");
+                getValue(data[0], data[1]);
+            }
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public static void getValue(String key, String prop) {
+        Properties properties = new Properties();
+        String file;
+        if (prop.equals("ru")) {
+            file = propRU;
+        } else if (prop.equals("en")) {
+            file = propEN;
+        } else {
+            System.out.println("No such values");
+            return;
+        }
+        try (FileInputStream fis = new FileInputStream(file)) {
+            properties.load(fis);
+            if (properties.getProperty(key) == null) {
+                System.out.println("No such values");
+            } else {
+                System.out.println(properties.getProperty(key));
+            }
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+}

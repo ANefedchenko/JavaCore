@@ -1,0 +1,93 @@
+package ua.nure.nefedchenko.practice4;
+
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.io.IOException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.BufferedReader;
+
+public class Part2 {
+    public static void main(String[] args) {
+        final String firstFile = "part2.txt";
+        final String sortedFile = "part2_sorted.txt";
+        writeRand(firstFile);
+        String rand = read(firstFile);
+        System.out.println("input ==>" + rand);
+        writeSorted(sortedFile, rand);
+        System.out.println("output ==>" + read(sortedFile));
+    }
+
+    public static String read(String path) {
+        StringBuilder sb = new StringBuilder();
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+            String s;
+            while ((s = br.readLine()) != null) {
+                sb.append(s);
+            }
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return sb.toString();
+    }
+
+    public static void writeRand(String path) {
+        StringBuilder sb = new StringBuilder();
+        final int minValue = 0;
+        final int maxValue = 50;
+        final int numOfNumbers = 10;
+        for (int i = 0; i < numOfNumbers; i++) {
+            int randomNum = ThreadLocalRandom.current().nextInt(minValue, maxValue + 1);
+            sb.append(randomNum).append(" ");
+        }
+        String str = sb.toString().trim();
+        writeToFile(path, str);
+    }
+
+    public static void writeSorted(String path, String input) {
+        Pattern pattern = Pattern.compile("\\d+");
+        Matcher matcher = pattern.matcher(input);
+        final int bufferSize = 10;
+        int[] numbers = new int[bufferSize];
+        int i = 0;
+        while (matcher.find()) {
+            numbers[i++] = Integer.parseInt(matcher.group());
+        }
+
+        sort(numbers);
+
+        StringBuilder sb = new StringBuilder();
+        for (int j : numbers) {
+            sb.append(j).append(" ");
+        }
+        String str = sb.toString().trim();
+
+        writeToFile(path, str);
+    }
+
+    public static void sort(int[] arr) {
+        boolean isSorted = false;
+        int buf;
+        while (!isSorted) {
+            isSorted = true;
+            for (int i = 0; i < arr.length - 1; i++) {
+                if (arr[i] > arr[i + 1]) {
+                    isSorted = false;
+
+                    buf = arr[i];
+                    arr[i] = arr[i + 1];
+                    arr[i + 1] = buf;
+                }
+            }
+        }
+    }
+
+    public static void writeToFile(String path, String str) {
+        try (FileWriter fw = new FileWriter(path)) {
+            fw.write(str);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+}

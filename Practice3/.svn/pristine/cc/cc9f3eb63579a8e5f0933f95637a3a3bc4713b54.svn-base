@@ -1,0 +1,38 @@
+package ua.nure.nefedchenko.practice3;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static ua.nure.nefedchenko.practice3.Util.readFile;
+
+public class Part6 {
+    public static void main(String[] args) {
+        String str = readFile("src/ua/nure/nefedchenko/practice3/part6.txt");
+        System.out.println(str);
+        System.out.println(convert(str));
+    }
+
+    public static String convert(String input) {
+        Pattern pForSplit = Pattern.compile("([ .,;'\\-\\n\\r]|[0-9])+");
+        String[] data = pForSplit.split(input);
+        Pattern pattern = Pattern.compile("([a-zA-zа-яА-яЁёҐґЇїІіЄє]+)");
+        Matcher matcher = pattern.matcher(input);
+        StringBuffer sb = new StringBuffer();
+        int count = 0;
+        while (matcher.find()) {
+            for (String datum : data) {
+                if (matcher.group().equals(datum)) {
+                    count++;
+                }
+            }
+            if (count > 1) {
+                String str = "_" + matcher.group();
+                matcher.appendReplacement(sb, str);
+            }
+            count = 0;
+        }
+        matcher.appendTail(sb);
+        System.out.println(sb);
+        return String.valueOf(sb);
+    }
+}

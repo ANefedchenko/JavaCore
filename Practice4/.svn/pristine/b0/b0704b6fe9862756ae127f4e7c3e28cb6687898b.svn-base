@@ -1,0 +1,69 @@
+package ua.nure.nefedchenko.practice4;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Part6 {
+    private static final String ENCODING = "Cp1251";
+
+    public static void main(String[] args) {
+        String input = read("src/ua/nure/nefedchenko/practice4/part6.txt");
+        String latnReg = "[a-zA-Z]{2,}";
+        String cyrlReg = "[а-яА-ЯЁёҐґЇїІіЄє]{1,}";
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
+            String text;
+            while ((text=br.readLine()) != null) {
+                switch (text) {
+                    case ("Latn"):
+                    case ("latn"):
+                        printMatch(latnReg, input, text);
+                        break;
+                    case ("Cyrl"):
+                    case ("cyrl"):
+                        printMatch(cyrlReg, input, text);
+                        break;
+                    case ("Stop"):
+                    case ("stop"):
+                        System.exit(0);
+                    default:
+                        System.out.println(text + ": Incorrect input");
+                        break;
+                }
+            }
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    public static void printMatch(String reg, String input, String typeOfReg) {
+        Pattern pattern = Pattern.compile(reg);
+        Matcher matcher = pattern.matcher(input);
+        StringBuilder sb = new StringBuilder();
+        sb.append(typeOfReg).append(":");
+        while (matcher.find()) {
+            sb.append(" ").append(matcher.group());
+        }
+        if (sb.length() == 0) {
+            System.out.print("No such values");
+        } else {
+            System.out.print(sb);
+        }
+        System.out.print(System.lineSeparator());
+    }
+
+    public static String read(String path) {
+        String res = null;
+        try {
+            byte[] bytes = Files.readAllBytes(Paths.get(path));
+            res = new String(bytes, ENCODING);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return res;
+    }
+}

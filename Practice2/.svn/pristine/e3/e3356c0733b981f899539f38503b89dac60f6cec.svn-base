@@ -1,0 +1,138 @@
+package ua.nure.nefedchenko.practice2;
+
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+public class StackImpl implements Stack {
+
+    public static final int DEFAULT_SIZE = 10;
+
+    protected Object[] elementData;
+
+    protected int size;
+
+    public StackImpl() {
+        elementData = new Object[DEFAULT_SIZE];
+    }
+
+    public static void main(String[] args) {
+        Stack stack = new StackImpl();
+        stack.push("Q");
+        stack.push("W");
+        stack.push("R");
+        System.out.println(stack.size());
+        Iterator it = stack.iterator();
+        while (it.hasNext()) {
+            System.out.print(it.next());
+        } System.out.println();
+        System.out.println(stack.top());
+        stack.pop();
+        System.out.println(stack);
+        Stack stack2 = new StackImpl();
+        stack2.push("A");
+        stack2.push("B");
+        stack2.push("C");
+        System.out.println(stack);
+        Iterator it2 = stack2.iterator();
+        System.out.println(it2.next());
+        it2.remove();
+        System.out.println(it2.next());
+        stack.clear();
+        System.out.println(stack2);
+    }
+
+    @Override
+    public void push(Object element) {
+        elementData[size++] = element;
+    }
+
+    @Override
+    public Object pop() {
+        Object popObject = top();
+        elementData[size--] = null;
+        return popObject;
+    }
+
+    @Override
+    public Object top() {
+        return elementData[size - 1];
+    }
+
+    @Override
+    public void clear() {
+        for (int i = 0; i < size; i++) {
+            elementData[i] = null;
+        }
+
+        size = 0;
+    }
+
+    @Override
+    public int size() {
+        return size;
+    }
+
+    @Override
+    public String toString() {
+        if (size == 0) {
+            return "[]";
+        }
+
+        StringBuilder b = new StringBuilder();
+        b.append('[');
+        for (int i = 0; ; i++) {
+            b.append(elementData[i]);
+            if (i == size - 1) {
+                return b.append(']').toString();
+            }
+            b.append(", ");
+        }
+    }
+
+    public void remove(int index) {
+        int numMoved = size - index - 1;
+        if (numMoved > 0) {
+            System.arraycopy(elementData, index + 1, elementData, index,
+                    numMoved);
+        }
+        elementData[--size] = null; // clear to let GC do its work
+    }
+
+    @Override
+    public Iterator<Object> iterator() {
+        return new IteratorImpl();
+    }
+
+    private class IteratorImpl implements Iterator<Object> {
+
+        int indexOfNext = size - 1;       // index of next element to return
+        int lastRet = -1;
+
+        @Override
+        public boolean hasNext() {
+            return indexOfNext != -1;
+        }
+
+        @Override
+        public Object next() {
+            if (hasNext()) {
+                int i = indexOfNext;
+                indexOfNext = i - 1;
+                return elementData[lastRet = i];
+            } else {
+                throw new NoSuchElementException();
+            }
+        }
+
+        @Override
+        public void remove() {
+            if (lastRet >= 0 && lastRet < StackImpl.this.size()) {
+                StackImpl.this.remove(lastRet);
+                indexOfNext = lastRet - 1;
+                lastRet = -1;
+            } else {
+                throw new IllegalStateException();
+            }
+        }
+    }
+}

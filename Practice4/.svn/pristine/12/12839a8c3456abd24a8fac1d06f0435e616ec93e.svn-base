@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a3267d3d-4bd9-4d4b-ac87-1e3e95f61a6e" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1XqF9yf5STa8FU6fJGf6Rhh5hgH" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last.edited.regexp" value="Sample Text" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+  </component>
+  <component name="RunManager" selected="Application.Demo">
+    <configuration name="Demo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ua.nure.nefedchenko.practice4.Demo" />
+      <module name="Practice4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ua.nure.nefedchenko.practice4.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Part1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ua.nure.nefedchenko.practice4.Part1" />
+      <module name="Practice4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ua.nure.nefedchenko.practice4.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Part2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ua.nure.nefedchenko.practice4.Part2" />
+      <module name="Practice4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ua.nure.nefedchenko.practice4.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Part3" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ua.nure.nefedchenko.practice4.Part3" />
+      <module name="Practice4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ua.nure.nefedchenko.practice4.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Part6" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ua.nure.nefedchenko.practice4.Part6" />
+      <module name="Practice4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ua.nure.nefedchenko.practice4.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Demo" />
+        <item itemvalue="Application.Part3" />
+        <item itemvalue="Application.Part1" />
+        <item itemvalue="Application.Part2" />
+        <item itemvalue="Application.Part6" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a3267d3d-4bd9-4d4b-ac87-1e3e95f61a6e" name="Default Changelist" comment="" />
+      <created>1581765569797</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1581765569797</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="275" y="41" key="#Inspections" timestamp="1581783164303">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="275" y="41" key="#Inspections/0.0.1366.768@0.0.1366.768" timestamp="1581783164303" />
+    <state x="275" y="41" key="#Project_Structure" timestamp="1581765581389">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="275" y="41" key="#Project_Structure/0.0.1366.768@0.0.1366.768" timestamp="1581765581389" />
+    <state x="454" y="186" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1581766588417">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="454" y="186" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.768@0.0.1366.768" timestamp="1581766588417" />
+    <state x="488" y="92" key="#com.intellij.ide.util.MemberChooser" timestamp="1582241487590">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="488" y="92" key="#com.intellij.ide.util.MemberChooser/0.0.1366.768@0.0.1366.768" timestamp="1582241487590" />
+    <state x="560" y="86" key="#xdebugger.evaluate" timestamp="1582313791763">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="560" y="86" key="#xdebugger.evaluate/0.0.1366.768@0.0.1366.768" timestamp="1582313791763" />
+    <state x="92" y="92" width="1182" height="584" key="DiffContextDialog" timestamp="1581967362131">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="92" y="92" width="1182" height="584" key="DiffContextDialog/0.0.1366.768@0.0.1366.768" timestamp="1581967362131" />
+    <state width="1323" height="192" key="GridCell.Tab.0.bottom" timestamp="1582321292246">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1323" height="192" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1582321292246" />
+    <state width="1323" height="192" key="GridCell.Tab.0.center" timestamp="1582321292246">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1323" height="192" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1582321292246" />
+    <state width="1323" height="192" key="GridCell.Tab.0.left" timestamp="1582321292246">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1323" height="192" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1582321292246" />
+    <state width="1323" height="192" key="GridCell.Tab.0.right" timestamp="1582321292246">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1323" height="192" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1582321292246" />
+    <state width="1323" height="238" key="GridCell.Tab.1.bottom" timestamp="1582314910747">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1323" height="238" key="GridCell.Tab.1.bottom/0.0.1366.768@0.0.1366.768" timestamp="1582314910747" />
+    <state width="1323" height="238" key="GridCell.Tab.1.center" timestamp="1582314910747">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1323" height="238" key="GridCell.Tab.1.center/0.0.1366.768@0.0.1366.768" timestamp="1582314910747" />
+    <state width="1323" height="238" key="GridCell.Tab.1.left" timestamp="1582314910747">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1323" height="238" key="GridCell.Tab.1.left/0.0.1366.768@0.0.1366.768" timestamp="1582314910747" />
+    <state width="1323" height="238" key="GridCell.Tab.1.right" timestamp="1582314910747">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state width="1323" height="238" key="GridCell.Tab.1.right/0.0.1366.768@0.0.1366.768" timestamp="1582314910747" />
+    <state x="404" y="124" width="540" height="524" key="StructurePopup" timestamp="1582313605385">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="404" y="124" width="540" height="524" key="StructurePopup/0.0.1366.768@0.0.1366.768" timestamp="1582313605385" />
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1581806073982">
+      <screen x="0" y="0" width="1366" height="768" />
+    </state>
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.0.1366.768@0.0.1366.768" timestamp="1581806073982" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="matcher.groups" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Practice4$Part5.ic" NAME="Part5 Coverage Results" MODIFIED="1582245195219" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>ua.nure.nefedchenko.practice4.*</FILTER>
+    </SUITE>
+  </component>
+</project>

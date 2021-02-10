@@ -1,0 +1,52 @@
+package ua.nure.nefedchenko.practice4;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+
+public class Part1 {
+    public static void main(String[] args) {
+        String str = readFile("src/ua/nure/nefedchenko/practice4/part1.txt");
+        System.out.println(convert(str));
+    }
+
+    public static String convert(String input) {
+        Pattern pattern = Pattern.compile("[a-zA-Zа-яА-ЯЁёҐґЇїІіЄє]{3,}");
+        Matcher matcher = pattern.matcher(input);
+        StringBuffer sb = new StringBuffer();
+        String word;
+        char letter;
+        while (matcher.find()) {
+            word = matcher.group();
+            char[] data = word.toCharArray();
+            for (int i = 0; i < data.length; i++) {
+                letter = data[i];
+                if (Character.isUpperCase(letter)) {
+                    data[i] = Character.toLowerCase(letter);
+                } else {
+                    data[i] = Character.toUpperCase(letter);
+                }
+            }
+            word = String.valueOf(data);
+            matcher.appendReplacement(sb, word);
+        }
+        matcher.appendTail(sb);
+        return String.valueOf(sb);
+    }
+
+    public static String readFile(String path) {
+        StringBuilder sb = new StringBuilder();
+        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+            String s;
+            while ((s = br.readLine()) != null) {
+                sb.append(s).append('\n');
+            }
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return sb.toString();
+    }
+}

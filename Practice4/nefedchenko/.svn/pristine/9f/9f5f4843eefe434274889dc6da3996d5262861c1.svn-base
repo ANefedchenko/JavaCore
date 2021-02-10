@@ -1,0 +1,172 @@
+package ua.nure.nefedchenko.practice2;
+
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+public class QueueImpl implements Queue {
+
+    private int size;
+
+    private Node first;
+
+    private Node last;
+
+    public static void main(String[] args) {
+        Queue queue = new QueueImpl();
+        queue.enqueue("A");
+        queue.enqueue("B");
+        queue.enqueue("C");
+        queue.enqueue("A");
+        queue.enqueue("B");
+        System.out.println(queue);
+        System.out.println(queue.size());
+        System.out.println(queue.top());
+        System.out.print(queue.dequeue());
+        System.out.print(queue.dequeue());
+        System.out.println(queue);
+        Iterator it = queue.iterator();
+        System.out.println(it.next());
+        System.out.println(it.next());
+        it.remove();
+        System.out.println(queue);
+        queue.clear();
+        System.out.println(queue);
+    }
+
+    public static class Node {
+        private Object item;
+        private Node next;
+        private Node prev;
+
+        Node(Node prev, Object element, Node next) {
+            this.item = element;
+            this.next = next;
+            this.prev = prev;
+        }
+    }
+
+    public String toString() {
+        if (size == 0) {
+            return "[]";
+        }
+
+        StringBuilder b = new StringBuilder();
+        b.append('[');
+        for (Node i = first; ; i = i.next) {
+            b.append(i.item);
+            if (i.next == null) {
+                return b.append(']').toString();
+            }
+            b.append(", ");
+        }
+    }
+
+    @Override
+    public void enqueue(Object element) {
+        Node l = last;
+        Node newNode = new Node(l, element, null);
+        last = newNode;
+        if (l == null) {
+            first = last;
+        } else {
+            l.next = newNode;
+        }
+        size++;
+    }
+
+    @Override
+    public Object dequeue() {
+        Node f = first;
+        if (f.next == null) {
+            first = last = null;
+        } else {
+            first = f.next;
+            f.next.prev = null;
+            f.next = null;
+        }
+        size--;
+        return f.item;
+    }
+
+    @Override
+    public Object top() {
+        return first.item;
+    }
+
+    @Override
+    public void clear() {
+        Node i = first;
+        while (i != null) {
+            Node next = i.next;
+            i.item = null;
+            i.next = null;
+            i.prev = null;
+            i = next;
+        }
+        first = last = null;
+        size = 0;
+    }
+
+    @Override
+    public int size() {
+        return size;
+    }
+
+    @Override
+    public Iterator<Object> iterator() {
+        return new IteratorImpl();
+    }
+
+    class IteratorImpl implements Iterator<Object> {
+
+        private Node lastReturned;
+        private Node nextNode = first;
+        private int countOfItr;
+
+        IteratorImpl() {
+        }
+
+        @Override
+        public boolean hasNext() {
+            return countOfItr < size;
+        }
+
+        @Override
+        public Object next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            lastReturned = nextNode;
+            nextNode = nextNode.next;
+            countOfItr++;
+            return lastReturned.item;
+        }
+
+        @Override
+        public void remove() {
+            if (lastReturned == null) {
+                throw new IllegalStateException();
+            }
+            Node f = lastReturned;
+            if (first == last) {
+                first = last = null;
+            } else if (f.next == null) {
+                f.prev.next = null;
+                last = f.prev;
+            } else if (f.prev == null) {
+                first = f.next;
+                f.next.prev = null;
+            } else {
+                Node buf;
+                buf = f.prev.next;
+                f.prev.next = f.next.prev;
+                f.next.prev = buf;
+            }
+
+            f.item = null;
+            size--;
+            lastReturned = null;
+            countOfItr--;
+        }
+    }
+}

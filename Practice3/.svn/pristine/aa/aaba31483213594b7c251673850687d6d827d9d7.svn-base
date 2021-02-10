@@ -1,0 +1,124 @@
+package ua.nure.nefedchenko.practice3;
+
+public class Part5 {
+
+    static int DECIMAL_STAT = 0;
+
+    public static void main(String[] args) {
+        for (int i = 1; i <= 100; i++)
+            System.out.println(i + " --> " + decimal2Roman(i) + " --> " + roman2Decimal(decimal2Roman(i)));
+    }
+
+    public static String decimal2Roman(int x) {
+        StringBuffer sb = new StringBuffer("");
+        int c1 = x / 100;
+        sb.append(C(c1));
+        int l1 = x / 50;
+        int l2 = x % 50;
+        if (l1 == 1) {
+            sb.append(L(l2));
+        }
+        int x1 = x / 10;
+        sb.append(X(x1));
+        int x2 = x % 10;
+        sb.append(basic(x2));
+        return sb.toString();
+    }
+
+    private static String C(int in) {
+        if (in == 1) {
+            return "C";
+        } else return "";
+    }
+
+    private static String X(int in) {
+        if (in == 4) return "XL";
+        else if ((in != 0) && (in < 4)) {
+            StringBuffer sb = new StringBuffer();
+            int i = 0;
+            while (i < in) {
+                sb.append("X");
+                i++;
+            }
+            return sb.toString();
+        } else return "";
+    }
+
+    private static String L(int in) {
+        if (in >= 40) return "XC";
+        else if (in != 0) {
+            StringBuffer sb = new StringBuffer("L");
+            int i = 0;
+            while (i < (in / 10)) {
+                sb.append("X");
+                i++;
+            }
+            return sb.toString();
+        } else return "L";
+
+    }
+
+    private static String basic(int in) {
+        String[] a = {
+                "",
+                "I",
+                "II",
+                "III",
+                "IV",
+                "V",
+                "VI",
+                "VII",
+                "VIII",
+                "IX"
+        };
+        return a[in];
+    }
+
+    public static int roman2Decimal(String s) {
+        int decimal = 0;
+        int lastNum = 0;
+        String romanNum = s.toUpperCase();
+        for (int i = romanNum.length() - 1; i >= 0; i--) {
+            char convertToDecimal = romanNum.charAt(i);
+            switch (convertToDecimal) {
+                case 'C':
+                    processDecimal(100, lastNum);
+                    lastNum = 100;
+                    break;
+
+                case 'L':
+                    processDecimal(50, lastNum);
+                    lastNum = 50;
+                    break;
+
+                case 'X':
+                    processDecimal(10, lastNum);
+                    lastNum = 10;
+                    break;
+
+                case 'V':
+                    processDecimal(5, lastNum);
+                    lastNum = 5;
+                    break;
+
+                case 'I':
+                    processDecimal(1, lastNum);
+                    lastNum = 1;
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + convertToDecimal);
+            }
+        }
+        decimal = DECIMAL_STAT;
+        DECIMAL_STAT = 0;
+        return decimal;
+    }
+
+    public static void processDecimal(int decimal, int lastNum) {
+        if (lastNum > decimal) {
+            DECIMAL_STAT -= decimal;
+        } else {
+            DECIMAL_STAT += decimal;
+        }
+    }
+}
