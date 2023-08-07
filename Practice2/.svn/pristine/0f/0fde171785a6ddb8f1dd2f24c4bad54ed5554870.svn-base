@@ -1,0 +1,226 @@
+package ua.nure.nefedchenko.practice2;
+
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
+public class ListImpl implements List {
+
+    static public int size;
+
+    public Node first;
+
+    public Node last;
+
+    public static void main(String[] args) {
+        List list = new ListImpl();
+        list.addFirst("c");
+        list.addFirst("b");
+        list.addFirst("a");
+        list.addLast("A");
+        list.addLast("B");
+        list.addLast("C");
+        System.out.println(list);
+        System.out.println(list.size());
+        System.out.print(list.getFirst());
+        System.out.print(list.getLast());
+        list.remove("a");
+        list.removeLast();
+        list.removeFirst();
+        System.out.println(list);
+        System.out.println(list.search("b"));
+        Iterator it = list.iterator();
+        System.out.println(it.next());
+        it.remove();
+        System.out.println(list);
+        list.clear();
+        System.out.println(list);
+    }
+
+    public static class Node {
+        private Object item;
+        private Node next;
+        private Node prev;
+
+        Node(Node prev, Object element, Node next) {
+            this.item = element;
+            this.next = next;
+            this.prev = prev;
+        }
+    }
+
+    public String toString() {
+        if (size == 0) {
+            return "[]";
+        }
+
+        StringBuilder b = new StringBuilder();
+        b.append('[');
+        for (Node i = first; ; i = i.next) {
+            b.append(i.item);
+            if (i.next == null) {
+                return b.append(']').toString();
+            }
+            b.append(", ");
+        }
+    }
+
+    @Override
+    public void addFirst(Object element) {
+        Node f = first;
+        Node newNode = new Node(null, element, f);
+        first = newNode;
+        if (f == null) {
+            last = newNode;
+        } else {
+            f.prev = newNode;
+        }
+        size++;
+    }
+
+    @Override
+    public void addLast(Object element) {
+        Node l = last;
+        Node newNode = new Node(l, element, null);
+        last = newNode;
+        if (l == null) {
+            first = newNode;
+        } else {
+            l.next = newNode;
+        }
+        size++;
+    }
+
+    @Override
+    public void removeFirst() {
+        Node f = first;
+        if (f.next == null) {
+            first = last = null;
+        } else {
+            first = f.next;
+            f.next.prev = null;
+            f.next = null;
+        }
+        size--;
+    }
+
+    @Override
+    public void removeLast() {
+        Node l = last;
+        if (l.prev == null) {
+            last = first = null;
+        } else {
+            last = l.prev;
+            l.prev.next = null;
+            l.prev = null;
+        }
+        size--;
+    }
+
+    @Override
+    public Object getFirst() {
+        return first.item;
+    }
+
+    @Override
+    public Object getLast() {
+        return last.item;
+    }
+
+    @Override
+    public Object search(Object element) {
+        for (Node i = first; i != null; i = i.next) {
+            if (element.equals(i.item)) {
+                return i.item;
+            }
+        }
+        return 0;
+    }
+
+    @Override
+    public boolean remove(Object element) {
+        for (Node i = first; i != null; i = i.next) {
+            if (element.equals(i.item)) {
+                deleteNode(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void deleteNode(Node node) {
+        Node n = node;
+        if (first == last) {
+            first = last = null;
+        } else if (n.next == null) {
+            n.prev.next = null;
+            last = n.prev;
+        } else if (n.prev == null) {
+            first = n.next;
+            n.next.prev = null;
+        } else {
+            Node buf;
+            buf = n.prev.next;
+            n.prev.next = n.next.prev;
+            n.next.prev = buf;
+        }
+        n.item = null;
+        size--;
+    }
+
+    @Override
+    public void clear() {
+        Node i = first;
+        while (i != null) {
+            Node next = i.next;
+            i.item = null;
+            i.next = null;
+            i.prev = null;
+            i = next;
+        }
+        first = last = null;
+        size = 0;
+    }
+
+    @Override
+    public int size() {
+        return size;
+    }
+
+    @Override
+    public Iterator<Object> iterator() {
+        return new IteratorImpl();
+    }
+
+    private class IteratorImpl implements Iterator<Object> {
+
+        private Node lastReturned;
+        private Node nextNode = first;
+        private int countOfItr;
+
+        @Override
+        public boolean hasNext() {
+            return countOfItr < size;
+        }
+
+        @Override
+        public Object next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            lastReturned = nextNode;
+            nextNode = nextNode.next;
+            countOfItr++;
+            return lastReturned.item;
+        }
+
+        @Override
+        public void remove() {
+            if (lastReturned == null) {
+                throw new IllegalStateException();
+            }
+            deleteNode(lastReturned);
+            lastReturned = null;
+            countOfItr--;
+        }
+    }
+}

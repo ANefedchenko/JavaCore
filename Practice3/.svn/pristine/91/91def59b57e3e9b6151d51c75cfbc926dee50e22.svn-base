@@ -1,0 +1,67 @@
+package ua.nure.nefedchenko.practice3;
+
+import java.util.regex.Pattern;
+
+import static ua.nure.nefedchenko.practice3.Util.readFile;
+
+public class Part2 {
+    public static void main(String[] args) {
+        String str = readFile("src/ua/nure/nefedchenko/practice3/part2.txt");
+        System.out.println(str);
+        System.out.println(convert(str));
+    }
+
+    public static String convert(String input) {
+        int minL = 30;
+        int maxL = 0;
+        Pattern pattern = Pattern.compile("([ .,;'\\-\\n\\r]|[0-9])+");
+        String[] data = pattern.split(input);
+
+        String[] arrUnique = removeDuplicates(data);
+
+        for (String datum : arrUnique) {
+            if (datum.length() > maxL) {
+                maxL = datum.length();
+            }
+            else if (datum.length() < minL) {
+                minL = datum.length();
+            }
+        }
+
+        StringBuffer sb = new StringBuffer("Min:");
+        for (String datum : arrUnique) {
+            if (datum.length() == minL) {
+                sb.append(" ").append(datum).append(",");
+            }
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        sb.append("\nMax:");
+        for (String datum : arrUnique) {
+            if (datum.length() == maxL) {
+                sb.append(" ").append(datum).append(",");
+            }
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        return String.valueOf(sb);
+    }
+
+    public static String[] removeDuplicates(String[] values) {
+        String[] array = new String[values.length];
+        System.arraycopy(values, 0, array, 0, values.length);
+        int length = array.length;
+        for (int i = array.length - 1; i > 0; i--) {
+            for (int j = i - 1; j != 0; j--) {
+                if (array[i].equals(array[j])) {
+                    int numMoved = array.length - i - 1;
+                    if (numMoved > 0) {
+                        System.arraycopy(array, i + 1, array, i, numMoved);
+                        length--;
+                    }
+                }
+            }
+        }
+        String[] arr = new String[length];
+        System.arraycopy(array, 0, arr, 0, length);
+        return arr;
+    }
+}

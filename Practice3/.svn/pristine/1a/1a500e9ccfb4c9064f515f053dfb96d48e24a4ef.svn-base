@@ -1,0 +1,26 @@
+package ua.nure.nefedchenko.practice3;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static ua.nure.nefedchenko.practice3.Util.readFile;
+
+public class Part3 {
+    public static void main(String[] args) {
+        String str = readFile("D://EPAM//Practice3//src//ua//nure//nefedchenko//practice3//part3.txt");
+        System.out.println(str);
+        System.out.println(convert(str));
+    }
+
+    public static String convert(String input) {
+        Pattern pattern = Pattern.compile("[a-zA-zа-яА-яЁёҐґЇїІіЄє]{3,}");
+        Matcher matcher = pattern.matcher(input);
+        StringBuffer sb = new StringBuffer();
+        while (matcher.find()) {
+            String str = matcher.group().substring(0, 1).toUpperCase() + matcher.group().substring(1);
+            matcher.appendReplacement(sb, str);
+        }
+        matcher.appendTail(sb);
+        return String.valueOf(sb);
+    }
+}
